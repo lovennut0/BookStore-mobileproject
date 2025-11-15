@@ -148,13 +148,13 @@ const OrderHistory: React.FC = () => {
           </View>
         ) : (
           <View style={styles.ordersList}>
-            {orders.map((order) => (
+            {orders.map((order, index) => (
               <View key={order.order_id} style={styles.orderCard}>
                 {/* Card Header */}
                 <View style={styles.orderHeader}>
                   <View>
                     <Text style={styles.orderTitle}>
-                      Order #{order.order_id}
+                      Order #{orders.length - index}
                     </Text>
                     <Text style={styles.orderDate}>
                       {new Date(order.created_at).toLocaleString('en-US', {
@@ -169,7 +169,7 @@ const OrderHistory: React.FC = () => {
                   <View style={styles.orderTotalBlock}>
                     <Text style={styles.orderTotalLabel}>Total</Text>
                     <Text style={styles.orderTotalValue}>
-                      ${Number(order.total_price).toFixed(2)}
+                      ฿ {Number(order.total_price).toFixed(2)}
                     </Text>
                   </View>
                 </View>
@@ -198,7 +198,7 @@ const OrderHistory: React.FC = () => {
                         </Text>
                       </View>
                       <Text style={styles.itemPrice}>
-                        ${Number(item.unit_price).toFixed(2)}
+                        ฿ {Number(item.unit_price).toFixed(2)}
                       </Text>
                     </View>
                   ))}

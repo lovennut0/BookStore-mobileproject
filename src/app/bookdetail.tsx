@@ -153,10 +153,7 @@ const BookDetail: React.FC = () => {
           <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>BookBook</Text>
-        <TouchableOpacity
-          style={styles.cartButton}
-          onPress={() => router.push('/cart')}
-        >
+        <TouchableOpacity style={styles.cartButton} onPress={() => router.push('/cart')} >
           <Text style={styles.cartIcon}>🛒</Text>
         </TouchableOpacity>
       </View>
@@ -206,7 +203,7 @@ const BookDetail: React.FC = () => {
 
             <View style={styles.priceBlock}>
               <View>
-                <Text style={styles.price}>{book.price} ฿</Text>
+                <Text style={styles.price}>{book.price} ฿ </Text>
                 <Text style={styles.stockText}>{book.stock} in stock</Text>
               </View>
             </View>
@@ -279,10 +276,15 @@ const styles = StyleSheet.create({
   },
   cartButton: {
     padding: 6,
-    borderRadius: 999,
+    backgroundColor: 'white',
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
   },
   cartIcon: {
-    fontSize: 22,
+    fontSize: 15,
     color: 'white',
   },
   scrollContent: {

@@ -16,6 +16,10 @@ const SignUp: React.FunctionComponent = () => {
       Alert.alert('Missing info', 'Please fill in all fields.');
       return;
     }
+    if (password.length < 6) {
+      Alert.alert('Weak Password', 'Password must be at least 6 characters long.');
+      return;
+    }
 
     setLoading(true);
 
@@ -43,7 +47,7 @@ const SignUp: React.FunctionComponent = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
             <View style={styles.box}>
-            <Text style={styles.title}> Register for an Account </Text>
+            <Text style={styles.title}> Create Your Account </Text>
 
             <TextInput style={styles.txtinput}
                 placeholder="Email" keyboardType="email-address" autoCapitalize="none" onChangeText={setEmail} value={email}/>
@@ -52,7 +56,7 @@ const SignUp: React.FunctionComponent = () => {
                 placeholder="Username" onChangeText={setUsername} value={username} />
 
             <TextInput style={styles.txtinput} 
-                placeholder="Password" secureTextEntry onChangeText={setPassword} value={password} />
+                placeholder="Password at least 6 characters" secureTextEntry onChangeText={setPassword} value={password} />
 
             <Pressable onPress={handleSubmit} style={({ pressed }) => [styles.btn, pressed && styles.pressed]} >
                 <Text style={styles.btnText}> {loading ? 'Creating...' : 'Sign Up'} </Text>

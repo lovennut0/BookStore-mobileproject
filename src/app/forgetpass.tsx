@@ -47,7 +47,7 @@ const Forgetpass = () => {
                 <Text style={{color:'white', fontSize:16}}> {loading ? 'Sending...' : 'Send reset link'} </Text>
             </Pressable>
 
-            <Link href="/login" style = {styles.link} > Back to Login </Link>
+            <Link href="/signin" style = {styles.link} > Back to Login </Link>
             </View>
         </View>
         </TouchableWithoutFeedback>

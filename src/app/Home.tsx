@@ -104,7 +104,7 @@ const Home: React.FunctionComponent = () => {
         <Text style={styles.author} numberOfLines={1}>
           {item.author}
         </Text>
-        <Text style={styles.price}>{item.price} ฿</Text>
+        <Text style={styles.price}>{item.price} ฿ </Text>
         <Text style={styles.stock}>{item.stock} in stock</Text>
       </View>
     </TouchableOpacity>
@@ -122,7 +122,7 @@ const Home: React.FunctionComponent = () => {
       <View style={styles.content}>
         {books.length === 0 ? (
           <View style={styles.empty}>
-            <Text style={styles.emptyText}>No books available</Text>
+            <Text style={styles.emptyText}> No books available </Text>
           </View> ) : (
           <FlatList
             data={books} keyExtractor={(item) => String(item.book_id)}
