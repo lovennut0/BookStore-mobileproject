@@ -115,7 +115,7 @@ const Home: React.FunctionComponent = () => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Book Lab</Text>
         <TouchableOpacity onPress={() => router.navigate("/cart")} style={styles.cartButton} > 
-          <Text style={{fontSize:24}}> 🛒 </Text>
+          <Text style={{fontSize:15}}> 🛒 </Text>
         </TouchableOpacity>
         </View>
 
@@ -241,5 +241,11 @@ const styles = StyleSheet.create({
   },
   cartButton: {
     padding: 8,
+    backgroundColor: 'white',
+    borderRadius: 50,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 4,
   },
 });

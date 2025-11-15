@@ -110,11 +110,7 @@ const Search: React.FC = () => {
     >
       <View style={styles.imageWrapper}>
         {item.img_url ? (
-          <Image
-            source={{ uri: item.img_url }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: item.img_url }} style={styles.image} resizeMode="cover" />
         ) : (
           <View style={styles.noImage}>
             <Text style={styles.noImageText}>No Image</Text>
@@ -166,8 +162,7 @@ const Search: React.FC = () => {
             </Text>
           </View>
         ) : (
-          <FlatList
-            data={filteredBooks}
+          <FlatList data={filteredBooks}
             keyExtractor={(item) => String(item.book_id)}
             renderItem={renderBook}
             numColumns={2}
