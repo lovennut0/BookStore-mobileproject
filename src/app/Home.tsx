@@ -34,7 +34,6 @@ const Home: React.FunctionComponent = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data, error } = await supabase.auth.getUser();
-
       if (error || !data.user) {
         router.replace('/signin');
       } else {
@@ -48,7 +47,6 @@ const Home: React.FunctionComponent = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       if (!userChecked) return;
-
       setBooksLoading(true);
 
       const { data, error } = await supabase
@@ -84,8 +82,7 @@ const Home: React.FunctionComponent = () => {
 
   const renderBook: ListRenderItem<Book> = ({ item }) => (
     <TouchableOpacity
-      style={styles.card}
-      onPress={() => handlePressBook(item.book_id)}
+      style={styles.card} onPress={() => handlePressBook(item.book_id)}
     >
       <View style={styles.imageWrapper}>
         {item.img_url ? (

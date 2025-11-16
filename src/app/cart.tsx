@@ -56,7 +56,6 @@ const Cart: React.FC = () => {
 
     const fetchCart = async () => {
   try {
-    // Get or create active cart
     let { data: cart } = await supabase
       .from('carts')
       .select('cart_id')
@@ -70,7 +69,6 @@ const Cart: React.FC = () => {
       return;
     }
 
-    // Get cart items with book details
     const { data: items, error } = await supabase
       .from('cart_items')
       .select(`
@@ -104,12 +102,9 @@ const Cart: React.FC = () => {
 
     const mapped: CartItem[] =
       ((items as unknown as SupabaseCartRow[] | null) ?? [])
-        // keep only rows that actually have a related book
         .filter((row) => row.books !== null)
         .map((row) => ({
-          cart_item_id: row.cart_item_id,
-          quantity: row.quantity,
-          books: row.books as CartItem['books'],
+          cart_item_id: row.cart_item_id, quantity: row.quantity, books: row.books as CartItem['books'],
         }));
 
     setCartItems(mapped);
@@ -119,7 +114,6 @@ const Cart: React.FC = () => {
     setCartLoading(false);
   }
 };
-
 
   const updateQuantity = async (
     cartItemId: number,
@@ -256,10 +250,7 @@ const Cart: React.FC = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
-        <TouchableOpacity
-          onPress={() => router.replace('/Home')}
-          style={styles.backButton}
-        >
+        <TouchableOpacity onPress={() => router.replace('/Home')} style={styles.backButton} >
           <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Shopping Cart</Text>
@@ -332,24 +323,14 @@ const Cart: React.FC = () => {
                         <Text style={styles.qtyText}>{item.quantity}</Text>
 
                         <TouchableOpacity
-                          style={[
-                            styles.qtyButton,
-                            item.quantity >= item.books.stock &&
-                              styles.qtyButtonDisabled,
-                          ]}
-                          onPress={() =>
-                            updateQuantity(
-                              item.cart_item_id,
-                              item.quantity + 1
-                            )
-                          }
+                          style={[ styles.qtyButton, item.quantity >= item.books.stock && styles.qtyButtonDisabled,]}
+                          onPress={() => updateQuantity( item.cart_item_id, item.quantity + 1 ) }
                           disabled={item.quantity >= item.books.stock}
                         >
                           <Text style={styles.qtyButtonText}>+</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                          style={styles.removeButton}
+                        <TouchableOpacity style={styles.removeButton}
                           onPress={() => removeItem(item.cart_item_id)} >
                           <Text style={styles.removeButtonText}>🗑️</Text>
                         </TouchableOpacity>
@@ -368,13 +349,8 @@ const Cart: React.FC = () => {
                 </Text>
               </View>
               <TouchableOpacity
-                style={[
-                  styles.primaryButton,
-                  checkoutLoading && styles.primaryButtonDisabled,
-                ]}
-                onPress={handleCheckout}
-                disabled={checkoutLoading}
-              >
+                style={[ styles.primaryButton, checkoutLoading && styles.primaryButtonDisabled, ]}
+                onPress={handleCheckout} disabled={checkoutLoading} >
                 <Text style={styles.primaryButtonText}>
                   {checkoutLoading ? 'Processing...' : 'Checkout'}
                 </Text>

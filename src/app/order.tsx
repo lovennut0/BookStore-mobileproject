@@ -17,9 +17,9 @@ interface OrderItem {
   quantity: number;
   unit_price: number;
   books: {
-    book_name: string;
-    author: string;
-    img_url: string | null;
+  book_name: string;
+  author: string;
+  img_url: string | null;
   };
 }
 
@@ -38,7 +38,6 @@ const OrderHistory: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Auth guard (similar to useAuth { user, loading })
   useEffect(() => {
     const checkAuth = async () => {
       const { data, error } = await supabase.auth.getUser();
@@ -72,11 +71,7 @@ const OrderHistory: React.FC = () => {
             book_id,
             quantity,
             unit_price,
-            books (
-              book_name,
-              author,
-              img_url
-            )
+            books ( book_name, author, img_url )
           )
         `)
         .order('created_at', { ascending: false });
@@ -105,7 +100,6 @@ const OrderHistory: React.FC = () => {
           created_at: row.created_at,
           total_price: row.total_price,
           order_items: row.order_items
-            // filter out items with missing book relation
             .filter((item) => item.books !== null)
             .map((item) => ({
               book_id: item.book_id,
@@ -140,9 +134,7 @@ const OrderHistory: React.FC = () => {
           <View style={styles.emptyCard}>
             <Text style={styles.emptyIcon}>🛒</Text>
             <Text style={styles.emptyText}>No orders yet</Text>
-            <TouchableOpacity
-              style={styles.primaryButton}
-              onPress={() => router.replace('/Home')} >
+            <TouchableOpacity style={styles.primaryButton} onPress={() => router.replace('/Home')} >
               <Text style={styles.primaryButtonText}>Start Shopping</Text>
             </TouchableOpacity>
           </View>
@@ -150,7 +142,6 @@ const OrderHistory: React.FC = () => {
           <View style={styles.ordersList}>
             {orders.map((order, index) => (
               <View key={order.order_id} style={styles.orderCard}>
-                {/* Card Header */}
                 <View style={styles.orderHeader}>
                   <View>
                     <Text style={styles.orderTitle}>
@@ -174,7 +165,6 @@ const OrderHistory: React.FC = () => {
                   </View>
                 </View>
 
-                {/* Card Content: items */}
                 <View style={styles.itemsBlock}>
                   {order.order_items.map((item, index) => (
                     <View

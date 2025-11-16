@@ -95,8 +95,7 @@ const BookDetail: React.FC = () => {
         } else {
           cartId = cart.cart_id;
         }
-
-      // Check if book already in cart
+        
       const { data: existingItem } = await supabase
         .from('cart_items')
         .select('cart_item_id, quantity')
@@ -158,17 +157,11 @@ const BookDetail: React.FC = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Content */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.card}>
-          {/* Image */}
           <View style={styles.imageWrapper}>
             {book.img_url ? (
-              <Image
-                source={{ uri: book.img_url }}
-                style={styles.image}
-                resizeMode="contain"
-              />
+              <Image source={{ uri: book.img_url }} style={styles.image} resizeMode="contain" />
             ) : (
               <View style={styles.noImage}>
                 <Text style={styles.noImageText}>No Image Available</Text>
@@ -210,12 +203,8 @@ const BookDetail: React.FC = () => {
 
             <TouchableOpacity
               onPress={handleAddToCart}
-              style={[
-                styles.addButton,
-                book.stock === 0 && styles.addButtonDisabled,
-              ]}
-              disabled={book.stock === 0}
-            >
+              style={[ styles.addButton, book.stock === 0 && styles.addButtonDisabled, ]}
+              disabled={book.stock === 0} >
               <Text style={styles.addButtonText}>
                 {book.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
               </Text>

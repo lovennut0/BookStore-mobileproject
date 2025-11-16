@@ -146,10 +146,7 @@ const Search: React.FC = () => {
         <View style={styles.searchContainer}>
           <Text style={styles.searchIcon}>🔍</Text>
           <TextInput
-            style={styles.searchInput}
-            placeholder="Search books, authors, publishers..."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
+            style={styles.searchInput} placeholder="Search books, authors, publishers..." value={searchQuery} onChangeText={setSearchQuery}
           />
         </View>
       </View>
@@ -163,11 +160,7 @@ const Search: React.FC = () => {
           </View>
         ) : (
           <FlatList data={filteredBooks}
-            keyExtractor={(item) => String(item.book_id)}
-            renderItem={renderBook}
-            numColumns={2}
-            columnWrapperStyle={styles.row}
-            contentContainerStyle={styles.listContent}
+            keyExtractor={(item) => String(item.book_id)} renderItem={renderBook} numColumns={2} columnWrapperStyle={styles.row} contentContainerStyle={styles.listContent}
           />
         )}
       </View>

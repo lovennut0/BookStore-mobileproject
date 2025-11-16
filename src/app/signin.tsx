@@ -49,8 +49,7 @@ const SignIn: React.FunctionComponent = () => {
           <Text style={styles.title}>Login to your account</Text>
 
           <TextInput style={styles.txtinput} 
-            placeholder="Email" keyboardType="email-address" autoCapitalize="none"
-            onChangeText={setEmail} value={email}
+            placeholder="Email" keyboardType="email-address" autoCapitalize="none" onChangeText={setEmail} value={email}
           />
 
           <TextInput style={styles.txtinput} 
